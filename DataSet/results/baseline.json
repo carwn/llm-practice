@@ -1,0 +1,77 @@
+{
+  "model": "gpt-4o-mini",
+  "total": 9,
+  "correct": 9,
+  "accuracy_pct": 100.0,
+  "avg_latency_ms": 1150,
+  "criteria": {
+    "primary": "Exact match: predicted label == expected label (one of: bug, feature, billing, question, other)",
+    "secondary": "Format compliance: single word response, no extra text",
+    "target_after_finetune": "Accuracy ≥ 90%, format compliance 100%"
+  },
+  "results": [
+    {
+      "expected": "feature",
+      "predicted": "feature",
+      "correct": true,
+      "latency_ms": 1154,
+      "user_content": "Subject: Add bulk rename functionality to file management in project workspace\n\nWhen working on large design projects, I frequently need to rename dozens of assets at once to match a new naming convention, but currently I have to do each file one by one which is incredibly time-consuming. It would be a huge productivity boost if you could add a bulk rename feature — similar to what tools like Adobe Bridge offer — where I can select multiple files and apply a pattern or find-and-replace rule across all of them at once. Even a simple sequential numbering option (e.g., 'banner_v1', 'banner_v2', etc.) would save me and my team hours every week. Happy to participate in any beta testing if this gets prioritized!"
+    },
+    {
+      "expected": "feature",
+      "predicted": "feature",
+      "correct": true,
+      "latency_ms": 972,
+      "user_content": "Subject: Revise Marketing Firm Framework\n\nDear Customer Service Team,\n\nI am reaching out to request modifications to the marketing firm's framework. I wish to incorporate new technologies to broaden our existing offerings, including data-centric analytics, video production, and user experience design. Furthermore, improving account manag..."
+    },
+    {
+      "expected": "other",
+      "predicted": "other",
+      "correct": true,
+      "latency_ms": 1210,
+      "user_content": "Subject: Partnership Opportunity – Accessibility Tools Integration\n\nHi there, I'm the founder of a small nonprofit called OpenAccess that develops screen reader plugins and keyboard navigation tools for people with visual and motor impairments. We've been using your platform internally and think there's a genuinely exciting opportunity to integrate our tools directly into your product to better serve users with disabilities. I'd love to connect with whoever handles partnership or business development discussions to explore what this could look like. Please feel free to reach out at partnerships@openaccessorg.org or I'm happy to schedule a call at your convenience."
+    },
+    {
+      "expected": "question",
+      "predicted": "question",
+      "correct": true,
+      "latency_ms": 1044,
+      "user_content": "Subject: Query About Service Downtime Maintenance Progress\n\nDear Customer Support Team,\n\nI hope this message reaches you well. I am reaching out to inquire about the current status of the service disruption affecting our operations. We have observed some interruptions and would be grateful for detailed information regarding the cause, the anticipated dura..."
+    },
+    {
+      "expected": "question",
+      "predicted": "question",
+      "correct": true,
+      "latency_ms": 1025,
+      "user_content": "Subject: How do I restrict which team members can approve pull requests?\n\nWe have a few junior developers on our team and I want to make sure only senior engineers can approve and merge pull requests into our main branch. I've looked through the repository settings but I'm not sure if this is controlled through branch protection rules, team permissions, or something else entirely. Can you walk me through the correct way to set this up so that approvals from certain users are required before a merge is allowed?"
+    },
+    {
+      "expected": "billing",
+      "predicted": "billing",
+      "correct": true,
+      "latency_ms": 1052,
+      "user_content": "Subject: Charged for annual plan but I selected monthly\n\nWhen I signed up last week, I specifically chose the monthly billing option at $19/month, but my credit card was charged $204 for what appears to be an annual subscription. I never agreed to an annual commitment and I can't find anywhere in my account settings to confirm which plan I'm actually on. Could you please correct this to a monthly plan and refund the difference? I'd like to keep using the service, just not locked into a full year."
+    },
+    {
+      "expected": "billing",
+      "predicted": "billing",
+      "correct": true,
+      "latency_ms": 1527,
+      "user_content": "Subject: Inquiry Regarding Invoice Details\n\nDear Customer Support Team,\n\nI hope this message finds you well. I am reaching out to request clarification about the billing and payment procedures linked to my account. Recently, I observed some inconsistencies in the charges applied and would like to ensure I fully understand the billing cycle..."
+    },
+    {
+      "expected": "bug",
+      "predicted": "bug",
+      "correct": true,
+      "latency_ms": 1126,
+      "user_content": "Subject: Invoice PDF export completely broken after yesterday's update\n\nEver since your system pushed an automatic update last night, every single time I try to export an invoice as a PDF I get a white blank file with nothing on it — no data, no logo, just empty pages. I've tried it on three different invoices, two different browsers, and even had my colleague test it on her machine and it's the same result for everyone. This is a serious problem because I have invoices due to clients TODAY and I cannot send them blank PDFs. Please fix this immediately or at least roll back whatever you changed, because this was working perfectly fine before your update."
+    },
+    {
+      "expected": "bug",
+      "predicted": "bug",
+      "correct": true,
+      "latency_ms": 1242,
+      "user_content": "Subject: Several Critical Devices Experiencing Network Failures\n\nDear Support Team,\n\nWe are currently facing multiple essential hardware failures that are significantly disrupting our live analytics rebalancing processes. Despite performing reboots on key systems and initial troubleshooting steps involving hardware and software adjustments, the devices remain ..."
+    }
+  ]
+}
