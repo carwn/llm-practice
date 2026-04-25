@@ -7,7 +7,7 @@ A Python CLI for accessing LLM models from multiple providers — **proxyapi.ru*
 - Single command to chat with any model: GPT, Claude, Gemini, Llama, Qwen, DeepSeek
 - Compare responses from different providers side-by-side
 - Model catalog with tier, cost, and capabilities metadata
-- Auto-discovery: sync catalog from Ollama and proxyapi.ru
+- Response metrics: latency, token counts, and cost per request
 - Works as CLI and as a Python library
 
 ## Setup
@@ -82,7 +82,19 @@ from config import load_config
 from client import LLMClient
 
 client = LLMClient(load_config())
+
+# Simple string-in, string-out
 response = await client.chat_simple("gpt-4o-mini", "Hello!")
+
+# With metrics: latency, tokens, cost
+text, metrics = await client.chat_with_metrics("gpt-4o-mini", [
+    {"role": "user", "content": "Hello!"}
+])
+print(metrics.latency_ms)    # e.g. 1314.0
+print(metrics.input_tokens)  # e.g. 10
+print(metrics.output_tokens) # e.g. 2
+print(metrics.total_tokens)  # e.g. 12
+print(metrics.cost_usd)      # e.g. 2.7e-06
 ```
 
 ## Configuration

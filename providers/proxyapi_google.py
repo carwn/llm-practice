@@ -1,7 +1,9 @@
+import time
 from google import genai
 from google.genai import types
 from .base import BaseProvider
 from config import Config
+from models.schema import ChatMetrics
 
 _GOOGLE_BASE_URL = "https://api.proxyapi.ru/google"
 
@@ -26,6 +28,19 @@ class ProxyAPIGoogleProvider(BaseProvider):
             model=model_id,
             contents=_to_google_contents(messages),
             **kwargs,
+        )
+
+    async def chat_with_metrics(
+        self, model_id: str, messages: list[dict], **kwargs
+    ) -> tuple[str, ChatMetrics]:
+        t0 = time.perf_counter()
+        raw = await self.chat_raw(model_id, messages, **kwargs)
+        latency_ms = (time.perf_counter() - t0) * 1000
+        usage = raw.usage_metadata
+        return raw.text, ChatMetrics(
+            latency_ms=latency_ms,
+            input_tokens=usage.prompt_token_count if usage else None,
+            output_tokens=usage.candidates_token_count if usage else None,
         )
 
     async def list_available_ids(self) -> list[str]:

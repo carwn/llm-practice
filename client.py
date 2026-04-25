@@ -1,6 +1,7 @@
 from typing import Any
 from config import Config
 from models.registry import ModelRegistry
+from models.schema import ChatMetrics
 from providers.base import BaseProvider
 from providers.proxyapi_openai import ProxyAPIOpenAIProvider
 from providers.proxyapi_anthropic import ProxyAPIAnthropicProvider
@@ -40,3 +41,15 @@ class LLMClient:
 
     async def chat_raw(self, model_id: str, messages: list[dict], **kwargs) -> Any:
         return await self._get_provider(model_id).chat_raw(model_id, messages, **kwargs)
+
+    async def chat_with_metrics(
+        self, model_id: str, messages: list[dict], **kwargs
+    ) -> tuple[str, ChatMetrics]:
+        text, metrics = await self._get_provider(model_id).chat_with_metrics(model_id, messages, **kwargs)
+        if metrics.input_tokens is not None and metrics.output_tokens is not None:
+            model = self.registry.get(model_id)
+            metrics.cost_usd = (
+                metrics.input_tokens * model.cost_input
+                + metrics.output_tokens * model.cost_output
+            ) / 1_000_000
+        return text, metrics

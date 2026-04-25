@@ -2,6 +2,20 @@ from dataclasses import dataclass, field
 
 
 @dataclass
+class ChatMetrics:
+    latency_ms: float
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    cost_usd: float | None = None
+
+    @property
+    def total_tokens(self) -> int | None:
+        if self.input_tokens is not None and self.output_tokens is not None:
+            return self.input_tokens + self.output_tokens
+        return None
+
+
+@dataclass
 class ModelInfo:
     id: str
     provider: str           # "openai" | "anthropic" | "google" | "meta" | ...

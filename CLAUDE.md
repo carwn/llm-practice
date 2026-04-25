@@ -13,11 +13,11 @@ config.py                  — loads settings from .env
 client.py                  — LLMClient: single entry point, routes by model source
 cli.py                     — typer CLI: chat, models, compare commands
 models/
-  schema.py                — ModelInfo dataclass
+  schema.py                — ModelInfo dataclass, ChatMetrics dataclass
   registry.py              — ModelRegistry: load/get/filter/upsert/save
   catalog.yaml             — model catalog (hand-curated)
 providers/
-  base.py                  — BaseProvider ABC: chat(), chat_raw(), list_available_ids()
+  base.py                  — BaseProvider ABC: chat(), chat_raw(), chat_with_metrics(), list_available_ids()
   proxyapi_openai.py       — OpenAI SDK → api.proxyapi.ru/openai/v1
   proxyapi_anthropic.py    — Anthropic SDK → api.proxyapi.ru/anthropic/v1
   proxyapi_google.py       — Google genai SDK → api.proxyapi.ru/google/v1
@@ -112,4 +112,12 @@ response = await client.chat("claude-sonnet-4-6", [
 
 # Raw SDK response (for provider-specific features)
 raw = await client.chat_raw("claude-sonnet-4-6", messages)
+
+# Response with metrics: latency, tokens, cost
+text, metrics = await client.chat_with_metrics("gpt-4o-mini", messages)
+metrics.latency_ms    # float, milliseconds
+metrics.input_tokens  # int | None
+metrics.output_tokens # int | None
+metrics.total_tokens  # int | None  (property: in + out)
+metrics.cost_usd      # float | None  (calculated from catalog rates)
 ```

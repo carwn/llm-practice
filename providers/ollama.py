@@ -1,7 +1,9 @@
 import json
 import subprocess
+import time
 from .base import BaseProvider
 from config import Config
+from models.schema import ChatMetrics
 
 
 class OllamaProvider(BaseProvider):
@@ -32,6 +34,19 @@ class OllamaProvider(BaseProvider):
             "messages": messages,
             **kwargs,
         })
+
+    async def chat_with_metrics(
+        self, model_id: str, messages: list[dict], **kwargs
+    ) -> tuple[str, ChatMetrics]:
+        t0 = time.perf_counter()
+        raw = await self.chat_raw(model_id, messages, **kwargs)
+        latency_ms = (time.perf_counter() - t0) * 1000
+        usage = raw.get("usage", {})
+        return raw["choices"][0]["message"]["content"], ChatMetrics(
+            latency_ms=latency_ms,
+            input_tokens=usage.get("prompt_tokens"),
+            output_tokens=usage.get("completion_tokens"),
+        )
 
     async def list_available_ids(self) -> list[str]:
         data = self._curl("/api/tags")

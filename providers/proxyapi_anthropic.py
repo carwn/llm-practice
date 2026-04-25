@@ -1,6 +1,8 @@
+import time
 import anthropic
 from .base import BaseProvider
 from config import Config
+from models.schema import ChatMetrics
 
 _ANTHROPIC_BASE_URL = "https://api.proxyapi.ru/anthropic"
 
@@ -33,6 +35,19 @@ class ProxyAPIAnthropicProvider(BaseProvider):
             max_tokens=kwargs.pop("max_tokens", 4096),
             **({"system": system} if system else {}),
             **kwargs,
+        )
+
+    async def chat_with_metrics(
+        self, model_id: str, messages: list[dict], **kwargs
+    ) -> tuple[str, ChatMetrics]:
+        t0 = time.perf_counter()
+        raw = await self.chat_raw(model_id, messages, **kwargs)
+        latency_ms = (time.perf_counter() - t0) * 1000
+        usage = raw.usage
+        return raw.content[0].text, ChatMetrics(
+            latency_ms=latency_ms,
+            input_tokens=usage.input_tokens if usage else None,
+            output_tokens=usage.output_tokens if usage else None,
         )
 
     async def list_available_ids(self) -> list[str]:
