@@ -15,16 +15,13 @@ cli.py                     — typer CLI: chat, models, compare commands
 models/
   schema.py                — ModelInfo dataclass
   registry.py              — ModelRegistry: load/get/filter/upsert/save
-  catalog.yaml             — model catalog (hand-curated + auto-updated)
+  catalog.yaml             — model catalog (hand-curated)
 providers/
   base.py                  — BaseProvider ABC: chat(), chat_raw(), list_available_ids()
   proxyapi_openai.py       — OpenAI SDK → api.proxyapi.ru/openai/v1
   proxyapi_anthropic.py    — Anthropic SDK → api.proxyapi.ru/anthropic/v1
   proxyapi_google.py       — Google genai SDK → api.proxyapi.ru/google/v1
   ollama.py                — curl subprocess → local Ollama /v1
-tools/
-  discover_proxyapi.py     — sync catalog with all proxyapi endpoints
-  discover_ollama.py       — sync catalog with local Ollama
 ```
 
 ## Routing Logic
@@ -80,18 +77,6 @@ python cli.py chat "Explain this" --model claude-sonnet-4-6 --system "You are a 
 python cli.py compare "Explain recursion in 2 sentences"
 python cli.py compare "Write hello world" --models "gpt-4o,claude-sonnet-4-6,gemini-2.0-flash"
 ```
-
-## Updating the Catalog
-
-```bash
-# Sync from all proxyapi.ru endpoints (OpenAI + Anthropic + Google)
-python tools/discover_proxyapi.py
-
-# Sync from local Ollama
-python tools/discover_ollama.py
-```
-
-Discovery tools never overwrite manually set fields (`tier`, `cost_input`, `cost_output`, `capabilities`, `display_name`). They only add new models and mark existing ones `available: true`.
 
 ## ModelInfo Fields
 
