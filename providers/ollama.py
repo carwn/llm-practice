@@ -15,7 +15,7 @@ class OllamaProvider(BaseProvider):
         cmd = ["curl", "-s", "--connect-timeout", "10", url]
         if body is not None:
             cmd += ["-H", "Content-Type: application/json", "-d", json.dumps(body)]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
         if result.returncode != 0 or not result.stdout.strip():
             raise RuntimeError(f"curl error: {result.stderr}")
         return json.loads(result.stdout)
