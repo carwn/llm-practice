@@ -1,0 +1,224 @@
+- id: qwen2.5-coder:7b
+  provider: alibaba
+  source: ollama
+  display_name: qwen2.5-coder:7b (7.6B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: qwen2.5-coder:7b-32k
+  provider: alibaba
+  source: ollama
+  display_name: qwen2.5-coder:7b-32k (7.6B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: qwen3.5:4b
+  provider: alibaba
+  source: ollama
+  display_name: qwen3.5:4b (4.7B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: qwen35-uncensored:latest
+  provider: alibaba
+  source: ollama
+  display_name: qwen35-uncensored:latest (9.0B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: qwen3:14b
+  provider: alibaba
+  source: ollama
+  display_name: qwen3:14b (14.8B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: qwen3:14b-14k
+  provider: alibaba
+  source: ollama
+  display_name: qwen3:14b-14k (14.8B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: claude-haiku-4-5-20251001
+  provider: anthropic
+  source: proxyapi-anthropic
+  display_name: Claude Haiku 4.5
+  tier: base
+  context_window: 200000
+  cost_input: 0.8
+  cost_output: 4.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: claude-opus-4-7
+  provider: anthropic
+  source: proxyapi-anthropic
+  display_name: Claude Opus 4.7
+  tier: top
+  context_window: 1000000
+  cost_input: 15.0
+  cost_output: 75.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  - reasoning
+  available: true
+- id: claude-sonnet-4-6
+  provider: anthropic
+  source: proxyapi-anthropic
+  display_name: Claude Sonnet 4.6
+  tier: top
+  context_window: 1000000
+  cost_input: 3.0
+  cost_output: 15.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  - reasoning
+  available: true
+- id: deepseek-r1:14b
+  provider: deepseek
+  source: ollama
+  display_name: deepseek-r1:14b (14.8B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: gemini-2.0-flash
+  provider: google
+  source: proxyapi-google
+  display_name: Gemini 2.0 Flash
+  tier: mid
+  context_window: 1048576
+  cost_input: 0.1
+  cost_output: 0.4
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: gemini-2.5-flash
+  provider: google
+  source: proxyapi-google
+  display_name: Gemini 2.5 Flash
+  tier: mid
+  context_window: 1048576
+  cost_input: 0.15
+  cost_output: 0.6
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  - reasoning
+  available: true
+- id: gemini-2.5-pro
+  provider: google
+  source: proxyapi-google
+  display_name: Gemini 2.5 Pro
+  tier: top
+  context_window: 2097152
+  cost_input: 1.25
+  cost_output: 10.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  - reasoning
+  available: true
+- id: gpt-4.1
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-4.1
+  tier: top
+  context_window: 1000000
+  cost_input: 2.0
+  cost_output: 8.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: gpt-4.1-mini
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-4.1 Mini
+  tier: mid
+  context_window: 1000000
+  cost_input: 0.4
+  cost_output: 1.6
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: gpt-4o
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-4o
+  tier: top
+  context_window: 128000
+  cost_input: 2.5
+  cost_output: 10.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: gpt-4o-mini
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-4o Mini
+  tier: base
+  context_window: 128000
+  cost_input: 0.15
+  cost_output: 0.6
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M
+  provider: unknown
+  source: ollama
+  display_name: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M (8.95B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
+- id: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K
+  provider: unknown
+  source: ollama
+  display_name: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K (8.95B)
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities: []
+  available: true
