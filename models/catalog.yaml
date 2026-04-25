@@ -1,17 +1,8 @@
+# Ollama — local inference
 - id: qwen2.5-coder:7b
   provider: alibaba
   source: ollama
-  display_name: qwen2.5-coder:7b (7.6B)
-  tier: base
-  context_window: 8192
-  cost_input: 0.0
-  cost_output: 0.0
-  capabilities: []
-  available: true
-- id: qwen2.5-coder:7b-32k
-  provider: alibaba
-  source: ollama
-  display_name: qwen2.5-coder:7b-32k (7.6B)
+  display_name: Qwen 2.5 Coder 7B
   tier: base
   context_window: 8192
   cost_input: 0.0
@@ -21,17 +12,7 @@
 - id: qwen3.5:4b
   provider: alibaba
   source: ollama
-  display_name: qwen3.5:4b (4.7B)
-  tier: base
-  context_window: 8192
-  cost_input: 0.0
-  cost_output: 0.0
-  capabilities: []
-  available: true
-- id: qwen35-uncensored:latest
-  provider: alibaba
-  source: ollama
-  display_name: qwen35-uncensored:latest (9.0B)
+  display_name: Qwen 3.5 4B
   tier: base
   context_window: 8192
   cost_input: 0.0
@@ -41,24 +22,37 @@
 - id: qwen3:14b
   provider: alibaba
   source: ollama
-  display_name: qwen3:14b (14.8B)
+  display_name: Qwen 3 14B
   tier: base
   context_window: 8192
   cost_input: 0.0
   cost_output: 0.0
   capabilities: []
   available: true
-- id: qwen3:14b-14k
+- id: qwen35-uncensored:latest
   provider: alibaba
   source: ollama
-  display_name: qwen3:14b-14k (14.8B)
+  display_name: Qwen 3.5 Uncensored 9B
   tier: base
   context_window: 8192
   cost_input: 0.0
   cost_output: 0.0
   capabilities: []
   available: true
-- id: claude-haiku-4-5-20251001
+- id: deepseek-r1:14b
+  provider: deepseek
+  source: ollama
+  display_name: DeepSeek R1 14B
+  tier: base
+  context_window: 8192
+  cost_input: 0.0
+  cost_output: 0.0
+  capabilities:
+  - reasoning
+  available: true
+
+# Anthropic — via proxyapi.ru
+- id: claude-haiku-4-5
   provider: anthropic
   source: proxyapi-anthropic
   display_name: Claude Haiku 4.5
@@ -71,14 +65,14 @@
   - tools
   - json_mode
   available: true
-- id: claude-opus-4-7
+- id: claude-sonnet-4-5
   provider: anthropic
   source: proxyapi-anthropic
-  display_name: Claude Opus 4.7
-  tier: top
-  context_window: 1000000
-  cost_input: 15.0
-  cost_output: 75.0
+  display_name: Claude Sonnet 4.5
+  tier: mid
+  context_window: 200000
+  cost_input: 3.0
+  cost_output: 15.0
   capabilities:
   - vision
   - tools
@@ -99,16 +93,22 @@
   - json_mode
   - reasoning
   available: true
-- id: deepseek-r1:14b
-  provider: deepseek
-  source: ollama
-  display_name: deepseek-r1:14b (14.8B)
-  tier: base
-  context_window: 8192
-  cost_input: 0.0
-  cost_output: 0.0
-  capabilities: []
+- id: claude-opus-4-7
+  provider: anthropic
+  source: proxyapi-anthropic
+  display_name: Claude Opus 4.7
+  tier: top
+  context_window: 1000000
+  cost_input: 15.0
+  cost_output: 75.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  - reasoning
   available: true
+
+# Google — via proxyapi.ru
 - id: gemini-2.0-flash
   provider: google
   source: proxyapi-google
@@ -150,40 +150,30 @@
   - json_mode
   - reasoning
   available: true
-- id: gpt-4.1
-  provider: openai
-  source: proxyapi-openai
-  display_name: GPT-4.1
+- id: gemini-3.1-pro-preview
+  provider: google
+  source: proxyapi-google
+  display_name: Gemini 3.1 Pro Preview
   tier: top
-  context_window: 1000000
-  cost_input: 2.0
-  cost_output: 8.0
+  context_window: 2097152
+  cost_input: 2.3
+  cost_output: 14.0
   capabilities:
   - vision
   - tools
   - json_mode
+  - reasoning
   available: true
-- id: gpt-4.1-mini
+
+# OpenAI — via proxyapi.ru
+- id: gpt-4.1-nano
   provider: openai
   source: proxyapi-openai
-  display_name: GPT-4.1 Mini
-  tier: mid
+  display_name: GPT-4.1 Nano
+  tier: base
   context_window: 1000000
-  cost_input: 0.4
-  cost_output: 1.6
-  capabilities:
-  - vision
-  - tools
-  - json_mode
-  available: true
-- id: gpt-4o
-  provider: openai
-  source: proxyapi-openai
-  display_name: GPT-4o
-  tier: top
-  context_window: 128000
-  cost_input: 2.5
-  cost_output: 10.0
+  cost_input: 0.1
+  cost_output: 0.4
   capabilities:
   - vision
   - tools
@@ -202,23 +192,77 @@
   - tools
   - json_mode
   available: true
-- id: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M
-  provider: unknown
-  source: ollama
-  display_name: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M (8.95B)
-  tier: base
-  context_window: 8192
-  cost_input: 0.0
-  cost_output: 0.0
-  capabilities: []
+- id: gpt-4.1-mini
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-4.1 Mini
+  tier: mid
+  context_window: 1000000
+  cost_input: 0.4
+  cost_output: 1.6
+  capabilities:
+  - vision
+  - tools
+  - json_mode
   available: true
-- id: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K
-  provider: unknown
-  source: ollama
-  display_name: hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K (8.95B)
-  tier: base
-  context_window: 8192
-  cost_input: 0.0
-  cost_output: 0.0
-  capabilities: []
+- id: gpt-oss-120b
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT OSS 120B
+  tier: mid
+  context_window: 128000
+  cost_input: 0.15
+  cost_output: 0.47
+  capabilities:
+  - tools
+  available: true
+- id: gpt-4.1
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-4.1
+  tier: top
+  context_window: 1000000
+  cost_input: 2.0
+  cost_output: 8.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: gpt-5
+  provider: openai
+  source: proxyapi-openai
+  display_name: GPT-5
+  tier: top
+  context_window: 1000000
+  cost_input: 1.25
+  cost_output: 10.0
+  capabilities:
+  - vision
+  - tools
+  - json_mode
+  available: true
+- id: o4-mini
+  provider: openai
+  source: proxyapi-openai
+  display_name: o4-mini
+  tier: mid
+  context_window: 200000
+  cost_input: 1.1
+  cost_output: 4.4
+  capabilities:
+  - tools
+  - reasoning
+  available: true
+- id: o3
+  provider: openai
+  source: proxyapi-openai
+  display_name: o3
+  tier: top
+  context_window: 200000
+  cost_input: 2.3
+  cost_output: 6.5
+  capabilities:
+  - tools
+  - reasoning
   available: true
